@@ -6,7 +6,110 @@ Loh Siu Yin
 Engineering Manager
 siuyin@xendit.co
 
+## Testable Documentation
+I did a literature search of "testable documentation"
+and found documents relating to:
+1. Behaviour Driven Development, specifically with regard
+ to the Cucumber tool.
+1. doctest, a python tool "To check that a module’s docstrings are up-to-date by verifying that all interactive examples still work as documented".
+
+## The Problem
+What I am trying to accomplish is:
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG5kKERvY3VtZW50YXRpb24pLS0-fGRlc2NyaWJlc3xzKFN5c3RlbSkiLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG5kKERvY3VtZW50YXRpb24pLS0-fGRlc2NyaWJlc3xzKFN5c3RlbSkiLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+
+
+When system changes *significantly*,
+fail tests to force the documentation to be updated.
+
+## My Approach
+
+Go `present` and `article` have `.code` links
+that cause the document render to fail if the
+link cannot be resolved.
+
+
+```
+ .code {source file} /{regexp of start}/,/{regexp of end}/
+
+Example, testdata/x.go:
+
+ .code testdata/x.go /^func myFunc\(/,/^}/
+```
+
+.code testdata/x.go /^func myFunc\(/,/^}/
+
+If I change the name of the function and reload the presentation...
+
+## Go present vs article
+The `present` tool renders `.slide` and `.article` files
+differently.
+
+You are watching the rendered output of a `.slide` file.
+
+---
+
+I will now render `testdata/sample.article` :
+
+
+.link testdata/sample.article
+
+## Go present is a good tutorial tool
+Go present renders short bite-size
+pieces of information -- slides.
+
+This presentation method is useful
+for:
+
+- Presentations.
+
+- A self-paced learning tool -- tutorials.
+
+- An interactive textbook of sorts.  
+ Eg. "Dummies guide to getting started with..."
+
+
+## Go article is a good reference manual
+
+Go article renders as one, potentially long,
+document -- complete with table of contents.
+
+This presentation method is useful for:
+
+- User manuals.
+
+- Reference manuals.
+
+- "Cookbooks"  
+ Eg. "HTML/CSS recipes"
+
+
+## When to use .link and .code
+
+Documentation tree:
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG5zZChTeXN0ZW0gRG9jdW1lbnRhdGlvbiktLT58Lmxpbmt8czEoTWljcm9zZXJ2aWNlIDEgRG9jKVxuc2QtLT58Lmxpbmt8czIoTWljcm9zZXJ2aWNlIDIgRG9jKVxuc2QtLT58Lmxpbmt8c24oTWljcm9zZXJ2aWNlIG4gRG9jKVxuXG5zbi0tPnwuY29kZXxtMShNb2R1bGUgMSBjb2RlKVxuc24tLT58LmNvZGV8bW4oTW9kdWxlIG4gY29kZSkiLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG5zZChTeXN0ZW0gRG9jdW1lbnRhdGlvbiktLT58Lmxpbmt8czEoTWljcm9zZXJ2aWNlIDEgRG9jKVxuc2QtLT58Lmxpbmt8czIoTWljcm9zZXJ2aWNlIDIgRG9jKVxuc2QtLT58Lmxpbmt8c24oTWljcm9zZXJ2aWNlIG4gRG9jKVxuXG5zbi0tPnwuY29kZXxtMShNb2R1bGUgMSBjb2RlKVxuc24tLT58LmNvZGV8bW4oTW9kdWxlIG4gY29kZSkiLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+
+`.link` s are not testable on render.
+They will succeed or fail only when you follow / click on the link.
+
+
+`.code` s are testable when the `.slide` or `.article` is reloaded.
+
+
+## .code can be used on any text file
+
+testdata/sample.article:
+```
+ .code testdata/sample.article /^## Testable Documentation$/,/$/
+```
+
+.code testdata/sample.article /^## Testable Documentation$/,/$/
+
+If I change the heading ...
 
 ## Presentation and code download
 
 .link https://github.com/siuyin/present-testable-documentation
+
+

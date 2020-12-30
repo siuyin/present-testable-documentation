@@ -1,0 +1,4 @@
+package junk
+
+func myFunc() {
+}
